@@ -31,12 +31,13 @@ void solve(vector<vector<char>>& board) {
         auto curr = q.front();
         q.pop();
 
-        for (int i = 0; i < 4; i++) {
-            if (isSafe({curr.first + dir[i].first, curr.second + dir[i].second}, row, col)
-                && board[i][j] == 'O' 
-                && !isBorder({curr.first + dir[i].first, curr.second + dir[i].second}, row, col)) {
-                    board[i][j] = '.';
-                    q.push({i, j});
+        for (int i = 0; i < dir.size(); i++) {
+            int dx = curr.first + dir[i].first, dy = curr.second + dir[i].second;
+            if (isSafe({dx, dy}, row, col)
+                && board[dx][dy] == 'O' 
+                && !isBorder({dx, dy}, row, col)) {
+                    board[dx][dy] = '.';
+                    q.push({dx, dy});
             }
         }
     }
